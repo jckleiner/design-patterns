@@ -4,6 +4,9 @@ import com.greydev.design_patterns.decorator.pizza.CheeseDecorator;
 import com.greydev.design_patterns.decorator.pizza.IPizzaComponent;
 import com.greydev.design_patterns.decorator.pizza.PlainPizzaComponent;
 import com.greydev.design_patterns.decorator.pizza.SucukDecorator;
+import com.greydev.design_patterns.factory.factorymethod.ChicagoPizzaStore;
+import com.greydev.design_patterns.factory.factorymethod.NYPizzaStore;
+import com.greydev.design_patterns.factory.factorymethod.PizzaStore;
 import com.greydev.design_patterns.observer.weatherstation.CarDisplay;
 import com.greydev.design_patterns.observer.weatherstation.PhoneDisplay;
 import com.greydev.design_patterns.observer.weatherstation.WeatherStation;
@@ -12,7 +15,7 @@ import com.greydev.design_patterns.strategy.brake.Sedan;
 import com.greydev.design_patterns.strategy.sort.BubbleSort;
 import com.greydev.design_patterns.strategy.sort.MyCollection;
 
-public class App {
+public class Demo {
 
 	public static void main(String[] args) {
 
@@ -21,6 +24,17 @@ public class App {
 		observerPatternDemo();
 
 		decoratorPatternDemo();
+
+		factoryMethodPatternDemo();
+
+	}
+
+	private static void factoryMethodPatternDemo() {
+		System.out.println("\n----- Factory Method Pattern -----");
+		PizzaStore nyStore = new NYPizzaStore();
+		PizzaStore chicagoStore = new ChicagoPizzaStore();
+		nyStore.orderPizza("cheese");
+		chicagoStore.orderPizza("cheese");
 
 	}
 
