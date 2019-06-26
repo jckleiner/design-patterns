@@ -1,5 +1,9 @@
 package com.greydev.design_patterns;
 
+import com.greydev.design_patterns.decorator.pizza.CheeseDecorator;
+import com.greydev.design_patterns.decorator.pizza.IPizzaComponent;
+import com.greydev.design_patterns.decorator.pizza.PlainPizzaComponent;
+import com.greydev.design_patterns.decorator.pizza.SucukDecorator;
 import com.greydev.design_patterns.observer.weatherstation.CarDisplay;
 import com.greydev.design_patterns.observer.weatherstation.PhoneDisplay;
 import com.greydev.design_patterns.observer.weatherstation.WeatherStation;
@@ -16,10 +20,27 @@ public class App {
 
 		observerPatternDemo();
 
+		decoratorPatternDemo();
+
+	}
+
+	private static void decoratorPatternDemo() {
+		System.out.println("\n----- Decorator Pattern -----");
+		PlainPizzaComponent plainPizza = new PlainPizzaComponent();
+		displayPizzaInfo(plainPizza);
+		CheeseDecorator cheseDecorator = new CheeseDecorator(plainPizza);
+		displayPizzaInfo(cheseDecorator);
+		SucukDecorator sucukDecorator = new SucukDecorator(cheseDecorator);
+		displayPizzaInfo(sucukDecorator);
+		// cheese or sucuk decorators cannot exists without a concrete IPizzaComponent
+	}
+
+	private static void displayPizzaInfo(IPizzaComponent pizza) {
+		System.out.println(pizza.getDescription() + ", cost: " + pizza.cost() + "$");
 	}
 
 	private static void observerPatternDemo() {
-		System.out.println("----- Observer Pattern -----");
+		System.out.println("\n----- Observer Pattern -----");
 
 		WeatherStation weatherStation = new WeatherStation();
 		weatherStation.setCurrentTemp(15);
@@ -33,11 +54,10 @@ public class App {
 		weatherStation.setCurrentTemp(20);
 		carDisplay.showCurrentTemparature();
 		phoneDisplay.showCurrentTemparature();
-		System.out.println();
 	}
 
 	public static void strategyPatternDemo() {
-		System.out.println("----- Strategy Pattern -----");
+		System.out.println("\n----- Strategy Pattern -----");
 
 		MyCollection collectionDefaultSorting = new MyCollection();
 		collectionDefaultSorting.sortString("blabla");
@@ -50,6 +70,5 @@ public class App {
 
 		SUV suv = new SUV();
 		suv.applyBrake();
-		System.out.println();
 	}
 }
