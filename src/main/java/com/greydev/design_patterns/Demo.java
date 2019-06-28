@@ -4,9 +4,12 @@ import com.greydev.design_patterns.decorator.pizza.CheeseDecorator;
 import com.greydev.design_patterns.decorator.pizza.IPizzaComponent;
 import com.greydev.design_patterns.decorator.pizza.PlainPizzaComponent;
 import com.greydev.design_patterns.decorator.pizza.SucukDecorator;
-import com.greydev.design_patterns.factory.factorymethod.ChicagoPizzaStore;
-import com.greydev.design_patterns.factory.factorymethod.NYPizzaStore;
-import com.greydev.design_patterns.factory.factorymethod.PizzaStore;
+import com.greydev.design_patterns.factory.abstractfactory.kingdom.FactoryMaker;
+import com.greydev.design_patterns.factory.abstractfactory.kingdom.FactoryMaker.KingdomType;
+import com.greydev.design_patterns.factory.abstractfactory.kingdom.KingdomFactory;
+import com.greydev.design_patterns.factory.factorymethod.pizza.ChicagoPizzaStore;
+import com.greydev.design_patterns.factory.factorymethod.pizza.NYPizzaStore;
+import com.greydev.design_patterns.factory.factorymethod.pizza.PizzaStore;
 import com.greydev.design_patterns.observer.weatherstation.CarDisplay;
 import com.greydev.design_patterns.observer.weatherstation.PhoneDisplay;
 import com.greydev.design_patterns.observer.weatherstation.WeatherStation;
@@ -19,17 +22,33 @@ public class Demo {
 
 	public static void main(String[] args) {
 
-		strategyPatternDemo();
+		strategyDemo();
 
-		observerPatternDemo();
+		observerDemo();
 
-		decoratorPatternDemo();
+		decoratorDemo();
 
-		factoryMethodPatternDemo();
+		factoryMethodDemo();
+
+		abstractFactoryDemo();
 
 	}
 
-	private static void factoryMethodPatternDemo() {
+	private static void abstractFactoryDemo() {
+		System.out.println("\n----- Abstract Factory Pattern -----");
+
+		KingdomFactory kingdomFactory = FactoryMaker.makeKingdomFactory(KingdomType.ELF);
+		System.out.println(kingdomFactory.getArmy().getDescription());
+		System.out.println(kingdomFactory.getKing().getDescription());
+		System.out.println(kingdomFactory.getCastle().getDescription());
+
+		kingdomFactory = FactoryMaker.makeKingdomFactory(KingdomType.ORC);
+		System.out.println(kingdomFactory.getArmy().getDescription());
+		System.out.println(kingdomFactory.getKing().getDescription());
+		System.out.println(kingdomFactory.getCastle().getDescription());
+	}
+
+	private static void factoryMethodDemo() {
 		System.out.println("\n----- Factory Method Pattern -----");
 		PizzaStore nyStore = new NYPizzaStore();
 		PizzaStore chicagoStore = new ChicagoPizzaStore();
@@ -38,7 +57,7 @@ public class Demo {
 
 	}
 
-	private static void decoratorPatternDemo() {
+	private static void decoratorDemo() {
 		System.out.println("\n----- Decorator Pattern -----");
 		PlainPizzaComponent plainPizza = new PlainPizzaComponent();
 		displayPizzaInfo(plainPizza);
@@ -53,7 +72,7 @@ public class Demo {
 		System.out.println(pizza.getDescription() + ", cost: " + pizza.cost() + "$");
 	}
 
-	private static void observerPatternDemo() {
+	private static void observerDemo() {
 		System.out.println("\n----- Observer Pattern -----");
 
 		WeatherStation weatherStation = new WeatherStation();
@@ -70,7 +89,7 @@ public class Demo {
 		phoneDisplay.showCurrentTemparature();
 	}
 
-	public static void strategyPatternDemo() {
+	public static void strategyDemo() {
 		System.out.println("\n----- Strategy Pattern -----");
 
 		MyCollection collectionDefaultSorting = new MyCollection();

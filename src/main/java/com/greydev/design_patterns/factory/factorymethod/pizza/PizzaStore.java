@@ -1,4 +1,4 @@
-package com.greydev.design_patterns.factory.factorymethod;
+package com.greydev.design_patterns.factory.factorymethod.pizza;
 
 // abstract creator
 public abstract class PizzaStore {

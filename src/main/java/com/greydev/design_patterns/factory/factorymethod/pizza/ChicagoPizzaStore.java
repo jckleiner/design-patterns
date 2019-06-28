@@ -1,4 +1,4 @@
-package com.greydev.design_patterns.factory.factorymethod;
+package com.greydev.design_patterns.factory.factorymethod.pizza;
 
 //concrete creator
 public class ChicagoPizzaStore extends PizzaStore {

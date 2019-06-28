@@ -1,4 +1,4 @@
-package com.greydev.design_patterns.factory.simplefactory;
+package com.greydev.design_patterns.factory.simplefactory.pizza;
 
 public class PizzaStore {
 
